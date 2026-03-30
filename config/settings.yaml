@@ -1,0 +1,39 @@
+# Application settings — override per environment
+environment: development
+
+sftp:
+  host: sftp.distributor.example.com
+  port: 22
+  username: partner_user
+  password: ""
+  private_key_path: ""
+  remote_outbound_dir: /outbound
+  remote_inbound_dir: /inbound
+  timeout: 30
+
+paths:
+  outbound_dir: ./data/outbound
+  inbound_dir: ./data/inbound
+  archive_dir: ./data/archive
+  failed_dir: ./data/failed
+  log_dir: ./logs
+
+files:
+  default_format: csv          # csv | xlsx
+  encoding: utf-8
+  csv_delimiter: ";"
+  csv_quotechar: "\""
+
+naming:
+  product_prefix: "PRODUCTS"
+  pricing_prefix: "PRICING"
+  stock_prefix: "STOCK"
+  order_prefix: "ORDERS"
+  timestamp_format: "%Y%m%d_%H%M%S"
+
+retry:
+  max_retries: 3
+  base_delay: 2.0
+  backoff_factor: 2.0
+
+log_level: INFO
