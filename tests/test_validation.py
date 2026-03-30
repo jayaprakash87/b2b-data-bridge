@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import pytest
 
 from b2b_data_bridge.models import (
     ExternalOrderRow,

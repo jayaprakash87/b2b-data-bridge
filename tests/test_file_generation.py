@@ -9,7 +9,7 @@ import pytest
 from openpyxl import load_workbook
 
 from b2b_data_bridge.config import FileConfig
-from b2b_data_bridge.models import ExternalPricingRow, ExternalProductRow, ExternalStockRow
+from b2b_data_bridge.models import ExternalProductRow
 from b2b_data_bridge.files import write_csv, write_xlsx
 
 

@@ -8,10 +8,6 @@ import pytest
 from pydantic import ValidationError
 
 from b2b_data_bridge.models import (
-    ExternalOrderRow,
-    ExternalPricingRow,
-    ExternalProductRow,
-    ExternalStockRow,
     Order,
     OrderLine,
     Price,

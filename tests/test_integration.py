@@ -6,7 +6,6 @@ import csv
 from decimal import Decimal
 from pathlib import Path
 
-import pytest
 
 from b2b_data_bridge.config import Settings
 from b2b_data_bridge.export import export_products, export_pricing, export_stock, run_full_export

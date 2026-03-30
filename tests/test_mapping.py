@@ -4,7 +4,6 @@ from __future__ import annotations
 
 from decimal import Decimal
 
-import pytest
 
 from b2b_data_bridge.models import Price, Product, Stock, product_to_row, price_to_row, stock_to_row
 

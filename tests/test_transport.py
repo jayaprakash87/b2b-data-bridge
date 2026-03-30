@@ -4,7 +4,6 @@ from __future__ import annotations
 
 from pathlib import Path
 
-import pytest
 
 from b2b_data_bridge.sftp import LocalClient
 

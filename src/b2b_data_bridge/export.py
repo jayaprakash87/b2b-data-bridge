@@ -9,7 +9,7 @@ from __future__ import annotations
 import logging
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Callable, List, Sequence, Union
+from typing import Callable, List, Sequence
 
 from pydantic import BaseModel
 
@@ -17,7 +17,6 @@ from b2b_data_bridge.config import Settings
 from b2b_data_bridge.files import make_filename, write_file, archive_file
 from b2b_data_bridge.models import (
     Product, Price, Stock,
-    ExternalProductRow, ExternalPricingRow, ExternalStockRow,
     product_to_row, price_to_row, stock_to_row,
 )
 from b2b_data_bridge.validation import validate_product_row, validate_pricing_row, validate_stock_row
