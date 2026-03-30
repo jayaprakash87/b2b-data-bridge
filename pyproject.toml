@@ -47,3 +47,9 @@ addopts = "-v --tb=short"
 [tool.ruff]
 target-version = "py39"
 line-length = 100
+
+[tool.coverage.run]
+omit = [
+    "*/b2b_data_bridge/__main__.py",
+    "*/b2b_data_bridge/main.py",
+]
