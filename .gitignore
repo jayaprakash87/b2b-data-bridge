@@ -37,3 +37,9 @@ Thumbs.db
 .idea/
 *.swp
 *.swo
+
+# files
+*.docx
+*.xlsx
+*.pptx
+*.pdf
