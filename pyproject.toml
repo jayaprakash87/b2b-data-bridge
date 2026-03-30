@@ -1,0 +1,49 @@
+[project]
+name = "b2b-data-bridge"
+version = "1.0.0"
+description = "Automated B2B data exchange — CSV/XLSX file bridge between e-commerce systems and distributors via sFTP"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+keywords = ["b2b", "data-exchange", "csv", "sftp", "edi", "e-commerce", "distributor"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Office/Business",
+]
+dependencies = [
+    "pydantic>=2.5,<3",
+    "openpyxl>=3.1,<4",
+    "paramiko>=3.4,<4",
+    "python-dotenv>=1.0,<2",
+    "pyyaml>=6.0,<7",
+    "eval_type_backport>=0.3;python_version<'3.10'",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0,<9",
+    "pytest-cov>=4.1,<6",
+    "ruff>=0.2,<1",
+]
+build = [
+    "pyinstaller>=6.0,<7",
+]
+
+[project.scripts]
+b2b-data-bridge = "b2b_data_bridge.main:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-v --tb=short"
+
+[tool.ruff]
+target-version = "py39"
+line-length = 100

@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.egg
+.mypy_cache/
+
+# Virtual environment
+.venv/
+venv/
+
+# Testing
+.pytest_cache/
+.ruff_cache/
+htmlcov/
+.coverage
+
+# Build artifacts
+dist/
+build/
+*.spec.bak
+
+# Environment & secrets
+.env
+
+# Runtime data (generated at runtime, not source)
+data/
+logs/
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
