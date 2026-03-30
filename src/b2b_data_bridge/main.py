@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import argparse
 import logging
+import logging.handlers
 import sys
 from decimal import Decimal
 from pathlib import Path
@@ -74,11 +75,27 @@ SFTP_PRIVATE_KEY_PATH=
 """
 
 
-def _setup_logging(level: str) -> None:
-    logging.basicConfig(
-        level=getattr(logging, level.upper(), logging.INFO),
-        format="%(asctime)s | %(levelname)-8s | %(name)s | %(message)s",
-    )
+def _setup_logging(level: str, log_dir: str | None = None) -> None:
+    fmt = "%(asctime)s | %(levelname)-8s | %(name)s | %(message)s"
+    numeric_level = getattr(logging, level.upper(), logging.INFO)
+
+    # Always log to stderr
+    handlers: list[logging.Handler] = [logging.StreamHandler(sys.stderr)]
+
+    # Also write to a rotating file when a log directory is available
+    if log_dir:
+        log_path = Path(log_dir)
+        log_path.mkdir(parents=True, exist_ok=True)
+        file_handler = logging.handlers.RotatingFileHandler(
+            log_path / "b2b-data-bridge.log",
+            maxBytes=10 * 1024 * 1024,  # 10 MB per file
+            backupCount=5,
+            encoding="utf-8",
+        )
+        file_handler.setFormatter(logging.Formatter(fmt))
+        handlers.append(file_handler)
+
+    logging.basicConfig(level=numeric_level, format=fmt, handlers=handlers)
 
 
 # ---------------------------------------------------------------------------
@@ -206,7 +223,7 @@ def main() -> None:
         sys.exit(1)
 
     settings.paths.ensure_dirs()
-    _setup_logging(settings.log_level)
+    _setup_logging(settings.log_level, settings.paths.log_dir)
 
     if args.local:
         transport = LocalClient()
