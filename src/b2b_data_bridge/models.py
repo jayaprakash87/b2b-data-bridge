@@ -8,7 +8,7 @@ Three layers:
 
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, timezone
 from decimal import Decimal, InvalidOperation
 from typing import Optional
 
@@ -28,7 +28,7 @@ class Product(BaseModel):
     category: str = ""
     brand: str = ""
     weight_kg: Optional[Decimal] = None
-    updated_at: datetime = Field(default_factory=datetime.utcnow)
+    updated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
     @field_validator("ean")
     @classmethod
@@ -54,7 +54,7 @@ class Stock(BaseModel):
     sku: str = Field(..., min_length=1)
     quantity: int = Field(..., ge=0)
     warehouse: str = ""
-    updated_at: datetime = Field(default_factory=datetime.utcnow)
+    updated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 
 class OrderLine(BaseModel):

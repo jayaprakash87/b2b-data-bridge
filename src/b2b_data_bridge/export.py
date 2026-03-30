@@ -7,7 +7,7 @@ Simple procedural orchestration, no state machines.
 from __future__ import annotations
 
 import logging
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Callable, List, Sequence, Union
 
@@ -46,7 +46,7 @@ def _run_export(
     Shared pipeline: map → validate → write → upload → archive.
     Returns a summary dict.
     """
-    ts = ts or datetime.utcnow()
+    ts = ts or datetime.now(timezone.utc)
 
     # 1. Map internal models → external flat rows
     rows = [mapper(item) for item in items]
@@ -122,7 +122,7 @@ def run_full_export(
     transport: Transport,
 ) -> list[dict]:
     """Run all three outbound exports and return list of summaries."""
-    ts = datetime.utcnow()
+    ts = datetime.now(timezone.utc)
     results = [
         export_products(products, settings, transport, ts),
         export_pricing(prices, settings, transport, ts),

@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import csv
 import shutil
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Sequence, Type, TypeVar
 
@@ -42,7 +42,7 @@ _JOB_PREFIX = {
 
 def make_filename(job_type: str, ext: str, naming: NamingConfig, ts: datetime | None = None) -> str:
     """Generate filename: PRODUCTS_20260330_143000.csv"""
-    ts = ts or datetime.utcnow()
+    ts = ts or datetime.now(timezone.utc)
     prefix = getattr(naming, _JOB_PREFIX[job_type])
     return f"{prefix}_{ts.strftime(naming.timestamp_format)}.{ext}"
 
@@ -177,11 +177,11 @@ def parse_file(path: Path, model: Type[T], config: FileConfig) -> tuple[list[T],
 
 def archive_file(file_path: Path, archive_dir: str) -> Path:
     """Move processed file into a date-stamped archive folder."""
-    dest_dir = Path(archive_dir) / datetime.utcnow().strftime("%Y-%m-%d")
+    dest_dir = Path(archive_dir) / datetime.now(timezone.utc).strftime("%Y-%m-%d")
     dest_dir.mkdir(parents=True, exist_ok=True)
     dest = dest_dir / file_path.name
     if dest.exists():
-        dest = dest_dir / f"{file_path.stem}_{datetime.utcnow().strftime('%H%M%S%f')}{file_path.suffix}"
+        dest = dest_dir / f"{file_path.stem}_{datetime.now(timezone.utc).strftime('%H%M%S%f')}{file_path.suffix}"
     shutil.move(str(file_path), str(dest))
     logger.info("Archived %s → %s", file_path.name, dest)
     return dest
@@ -189,11 +189,11 @@ def archive_file(file_path: Path, archive_dir: str) -> Path:
 
 def quarantine_file(file_path: Path, failed_dir: str, reason: str = "") -> Path:
     """Move bad file to quarantine folder."""
-    dest_dir = Path(failed_dir) / datetime.utcnow().strftime("%Y-%m-%d")
+    dest_dir = Path(failed_dir) / datetime.now(timezone.utc).strftime("%Y-%m-%d")
     dest_dir.mkdir(parents=True, exist_ok=True)
     dest = dest_dir / file_path.name
     if dest.exists():
-        dest = dest_dir / f"{file_path.stem}_{datetime.utcnow().strftime('%H%M%S%f')}{file_path.suffix}"
+        dest = dest_dir / f"{file_path.stem}_{datetime.now(timezone.utc).strftime('%H%M%S%f')}{file_path.suffix}"
     shutil.move(str(file_path), str(dest))
     logger.warning("Quarantined %s (reason: %s)", file_path.name, reason)
     return dest
