@@ -1,0 +1,6 @@
+ArticleNumber;NetPrice;GrossPrice;Currency;PriceUnit;ValidFrom;ValidTo
+SKU-001;29.90;32.29;CHF;1;;
+SKU-002;49.90;53.89;CHF;1;;
+SKU-003;89.00;96.12;CHF;1;;
+SKU-004;349.00;376.92;CHF;1;;
+SKU-005;39.90;43.09;CHF;1;;

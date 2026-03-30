@@ -1,0 +1,6 @@
+ArticleNumber;ArticleName;EAN;Description;Category;Brand;WeightKG;LastUpdate
+SKU-001;Wireless Mouse;4006381333931;Ergonomic wireless mouse;Peripherals;TechCorp;0.12;2026-03-30T10:00:00
+SKU-002;USB-C Hub 7-Port;4006381333948;USB-C hub with 7 ports;Accessories;TechCorp;0.25;2026-03-30T10:00:00
+SKU-003;Mechanical Keyboard;4006381333955;Cherry MX Blue switches;Peripherals;KeyTech;0.85;2026-03-30T10:00:00
+SKU-004;27-inch Monitor;4006381333962;4K IPS display;Displays;ScreenPro;5.20;2026-03-30T10:00:00
+SKU-005;Laptop Stand;4006381333979;Aluminum adjustable laptop stand;Accessories;DeskGear;1.10;2026-03-30T10:00:00
